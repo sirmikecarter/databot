@@ -5,7 +5,9 @@
 "body": [
 {
 "type": "Image",
-"url": "https://gateway.ipfs.io/ipfs/QmV4aYRbmS3BRbDdXUkXEFRyVw1F1TiJvKpgQWARFX14yy"
+"url": "https://gateway.ipfs.io/ipfs/QmV4aYRbmS3BRbDdXUkXEFRyVw1F1TiJvKpgQWARFX14yy",
+"width": 200,
+"height": 200
 },
 {
 "type": "TextBlock",
