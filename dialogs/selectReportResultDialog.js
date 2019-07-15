@@ -137,9 +137,10 @@ class SelectReportResultDialog {
                         }
                   }
 
-                  self.state.entities = itemArray
+                  self.state.entities = [{'id': 0, 'entities': itemArray }]
+                  //console.log(self.state.entities)
                 }else {
-                  self.state.entities = ['[No Results]']
+                  self.state.entities = [{'id': 0, 'entities': '[No Results]' }]
                 }
 
             }).catch((error)=>{
@@ -172,9 +173,9 @@ class SelectReportResultDialog {
                          }
                    }
 
-                   self.state.keyPhrases = itemArray
+                   self.state.keyPhrases = [{'id': 0, 'keyphrases': itemArray }]
                  }else {
-                   self.state.keyPhrases = ['[No Results]']
+                   self.state.keyPhrases = [{'id': 0, 'keyphrases': '[No Results]' }]
                  }
 
 
@@ -200,7 +201,7 @@ class SelectReportResultDialog {
                 console.log(error.response);
             });
 
-        await turnContext.sendActivity({ attachments: [this.dialogHelper.createReportCard(this.state.reportname, this.state.description, this.state.owner, this.state.designee, this.state.approver, this.state.division, this.state.classification, this.state.language, this.state.entities[0], this.state.keyPhrases[0], this.state.sentiment)] });
+        await turnContext.sendActivity({ attachments: [this.dialogHelper.createReportCard(this.state.reportname, this.state.description, this.state.owner, this.state.designee, this.state.approver, this.state.division, this.state.classification, this.state.language, this.state.entities[0].entities, this.state.keyPhrases[0].keyphrases, this.state.sentiment)] });
 
         await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
 

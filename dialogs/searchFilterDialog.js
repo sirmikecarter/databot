@@ -389,13 +389,21 @@ class SearchFilterDialog extends CancelAndHelpDialog {
                     {
 
                       if (response.data.documents[i].entities[0]){
-                        itemArray.push({'id': i, 'entities': response.data.documents[i].entities[0].name})
+                        //console.log(response.data.documents[i].entities.length)
+                        var entitiesArray = []
+                        for (var i2 = 0; i2 < response.data.documents[i].entities.length; i2++)
+                        {
+                         entitiesArray.push(response.data.documents[i].entities[i2].name)
+                        }
+                        itemArray.push({'id': i, 'entities': entitiesArray})
                       }else {
                         itemArray.push({'id': i, 'entities': 'No Results'})
                       }
 
                     }
+
                     self.state.reportArrayEntities = itemArray
+                    //console.log(self.state.reportArrayEntities)
                   }else {
                     self.state.reportArrayEntities = ['[No Results]']
                   }
@@ -422,7 +430,15 @@ class SearchFilterDialog extends CancelAndHelpDialog {
                      for (var i = 0; i < itemCount; i++)
                      {
                        if (response.data.documents[i].keyPhrases[0]){
-                         itemArray.push({'id': i, 'keyphrases': response.data.documents[i].keyPhrases[0]})
+
+                         var keyphrasesArray = []
+
+                         for (var i2 = 0; i2 < response.data.documents[i].keyPhrases.length; i2++)
+                         {
+                          keyphrasesArray.push(response.data.documents[i].keyPhrases[i2])
+                         }
+
+                         itemArray.push({'id': i, 'keyphrases': keyphrasesArray})
                        }else {
                          itemArray.push({'id': i, 'keyphrases': 'No Results'})
                        }

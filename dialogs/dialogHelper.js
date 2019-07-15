@@ -104,29 +104,56 @@ class DialogHelper {
              "separator": true
            },
            {
-             "type": "FactSet",
-             "facts": [
-               {
-                 "title": "Report Language:",
-                 "value": language,
-                 "wrap": true
-               },
-               {
-                 "title": "Entities:",
-                 "value": entities,
-                 "wrap": true
-               },
-               {
-                 "title": "Key Phrases:",
-                 "value": keyPhrases,
-                 "wrap": true
-               },
-               {
-                 "title": "Sentiment Score:",
-                 "value": sentiment,
-                 "wrap": true
-               }
-             ]
+             "type": "TextBlock",
+             "text": "Report Language:",
+             "weight": "bolder",
+             "size": "small",
+             "separator": true
+           },
+           {
+             "type": "TextBlock",
+             "text": language,
+             "size": "small",
+             "wrap": true
+           },
+           {
+             "type": "TextBlock",
+             "text": "Entities:",
+             "weight": "bolder",
+             "size": "small",
+             "separator": true
+           },
+           {
+             "type": "TextBlock",
+             "text": entities + "\r",
+             "size": "small",
+             "wrap": true
+           },
+           {
+             "type": "TextBlock",
+             "text": "Key Phrases:",
+             "weight": "bolder",
+             "size": "small",
+             "separator": true
+           },
+           {
+             "type": "TextBlock",
+             "text": keyPhrases + "\r",
+             "size": "small",
+             "wrap": true
+           },
+           {
+             "type": "TextBlock",
+             "text": "Sentiment Score:",
+             "weight": "bolder",
+             "size": "small",
+             "separator": true
+           },
+           {
+             "type": "TextBlock",
+             "text": sentiment,
+             "size": "small",
+             "wrap": true
            }
          ],
          "actions": [
