@@ -132,6 +132,41 @@ class MainDialog extends ComponentDialog {
 
          }
 
+         if (turnContext.activity.type === ActivityTypes.ConversationUpdate) {
+             // Handle ConversationUpdate activity type, which is used to indicates new members add to
+             // the conversation.
+             // see https://aka.ms/about-bot-activity-message to learn more about the message and other activity types
+
+             // Do we have any new members added to the conversation?
+             if (turnContext.activity.membersAdded.length !== 0) {
+                 // Iterate over all new members added to the conversation
+
+                 for (var idx in turnContext.activity.membersAdded) {
+                     // Greet anyone that was not the target (recipient) of this message
+                     // the 'bot' is the recipient for events from the channel,
+                     // turnContext.activity.membersAdded == turnContext.activity.recipient.Id indicates the
+                     // bot was added to the conversation.
+                     if (turnContext.activity.membersAdded[idx].id !== turnContext.activity.recipient.id) {
+                         // Welcome user.
+                         // When activity type is "conversationUpdate" and the member joining the conversation is the bot
+                         // we will send our Welcome Adaptive Card.  This will only be sent once, when the Bot joins conversation
+                         // To learn more about Adaptive Cards, see https://aka.ms/msbot-adaptivecards for more details.
+                         //await turnContext.sendActivity(`Hello, this is R2-D2 - your virtual assistant.`);
+                         //await turnContext.sendActivity(`I can help you submit a Request for Architecture Work (RAW), check the weather forecast, answer your questions about CalPERS or even carry on a converstation with you`);
+                         //await turnContext.sendActivity(`What can I help with you today?`);
+ 
+                         await turnContext.sendActivity({
+                             //text: '',
+                             attachments: [CardFactory.adaptiveCard(WelcomeCard)]
+                           });
+
+
+
+                     }
+                 }
+             }
+         }
+
      }
 
     /**
