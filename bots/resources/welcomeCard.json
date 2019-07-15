@@ -6,7 +6,8 @@
 {
 "type": "Image",
 "url": "https://gateway.ipfs.io/ipfs/QmV4aYRbmS3BRbDdXUkXEFRyVw1F1TiJvKpgQWARFX14yy",
-"size": "medium"
+"size": "large",
+"style": "Person"
 },
 {
 "type": "TextBlock",
