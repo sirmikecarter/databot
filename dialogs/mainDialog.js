@@ -1,5 +1,6 @@
 const { ComponentDialog, DialogSet, DialogTurnStatus, TextPrompt, WaterfallDialog, ChoiceFactory, ChoicePrompt } = require('botbuilder-dialogs');
 const { AttachmentLayoutTypes, CardFactory, MessageFactory } = require('botbuilder-core');
+const { ActivityTypes } = require('botbuilder');
 
 const { SearchFilterDialog } = require('./searchFilterDialog');
 const { SearchDialog } = require('./searchDialog');
@@ -154,7 +155,7 @@ class MainDialog extends ComponentDialog {
                          //await turnContext.sendActivity(`Hello, this is R2-D2 - your virtual assistant.`);
                          //await turnContext.sendActivity(`I can help you submit a Request for Architecture Work (RAW), check the weather forecast, answer your questions about CalPERS or even carry on a converstation with you`);
                          //await turnContext.sendActivity(`What can I help with you today?`);
- 
+
                          await turnContext.sendActivity({
                              //text: '',
                              attachments: [CardFactory.adaptiveCard(WelcomeCard)]
