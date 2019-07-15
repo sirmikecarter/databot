@@ -1,0 +1,58 @@
+{
+"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+"type": "AdaptiveCard",
+"version": "1.0",
+"body": [
+{
+"type": "Image",
+"url": "https://gateway.ipfs.io/ipfs/QmV4aYRbmS3BRbDdXUkXEFRyVw1F1TiJvKpgQWARFX14yy"
+},
+{
+"type": "TextBlock",
+"spacing":"medium",
+"size": "default",
+"weight":"bolder",
+"text": "Hello, this is BI-8900 - your Business Intelligence assistant.",
+"wrap": true,
+"maxLines": 0
+},
+{
+"type": "TextBlock",
+"size": "default",
+"isSubtle": "yes",
+"text": "I'm programmed to assit you with your Data Governance needs.",
+"wrap": true,
+"maxLines": 0
+},
+{
+"type": "TextBlock",
+"size": "default",
+"isSubtle": "yes",
+"text": "What can I help you with today?",
+"wrap": true,
+"maxLines": 0
+}
+],
+"actions": [
+{
+"type": "Action.Submit",
+"title": "How Do I Calculate the 2% Retirement Formula",
+"data": "How Do I Calculate the 2% Retirement Formula"
+},
+{
+"type": "Action.Submit",
+"title": "Select a Report by Report Name",
+"data": "Select a Report by Report Name"
+},
+{
+"type": "Action.Submit",
+"title": "Search Options",
+"data": "Search Options"
+},
+{
+"type": "Action.Submit",
+"title": "Search with LUIS (Language Understanding Intelligent Service)",
+"data": "Search with LUIS"
+}
+]
+}
