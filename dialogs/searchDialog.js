@@ -434,7 +434,7 @@ class SearchDialog extends CancelAndHelpDialog {
                     attachmentLayout: AttachmentLayoutTypes.Carousel });
               }
 
-              await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Here are the Related Items I Found: ','')] });
+              await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Here are the top metadata items:','')] });
 
               await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createMenu('Owner ', metaDataOwnerCount[0][1]),
                 this.dialogHelper.createMenu('Designee ', metaDataDesigneeCount[0][1]),
