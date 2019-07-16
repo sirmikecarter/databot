@@ -58,111 +58,129 @@ class DialogHelper {
              "type": "TextBlock",
              "text": description,
              "wrap": true
-           },
-           {
-             "type": "TextBlock",
-             "text": "Metadata",
-             "weight": "bolder",
-             "size": "medium",
-             "separator": true
-           },
-           {
-             "type": "FactSet",
-             "facts": [
-               {
-                 "title": "Owner:",
-                 "value": owner,
-                 "wrap": true
-               },
-               {
-                 "title": "Designee:",
-                 "value": designee,
-                 "wrap": true
-               },
-               {
-                 "title": "Approver:",
-                 "value": approver,
-                 "wrap": true
-               },
-               {
-                 "title": "Division:",
-                 "value": division,
-                 "wrap": true
-               },
-               {
-                 "title": "Classification:",
-                 "value": classification,
-                 "wrap": true
-               }
-             ]
-           },
-           {
-             "type": "TextBlock",
-             "text": "Additional Information",
-             "weight": "bolder",
-             "size": "medium",
-             "separator": true
-           },
-           {
-             "type": "TextBlock",
-             "text": "Report Language:",
-             "weight": "bolder",
-             "size": "small",
-             "separator": true
-           },
-           {
-             "type": "TextBlock",
-             "text": language,
-             "size": "small",
-             "wrap": true
-           },
-           {
-             "type": "TextBlock",
-             "text": "Entities:",
-             "weight": "bolder",
-             "size": "small",
-             "separator": true
-           },
-           {
-             "type": "TextBlock",
-             "text": entities + "\r",
-             "size": "small",
-             "wrap": true
-           },
-           {
-             "type": "TextBlock",
-             "text": "Key Phrases:",
-             "weight": "bolder",
-             "size": "small",
-             "separator": true
-           },
-           {
-             "type": "TextBlock",
-             "text": keyPhrases + "\r",
-             "size": "small",
-             "wrap": true
-           },
-           {
-             "type": "TextBlock",
-             "text": "Sentiment Score:",
-             "weight": "bolder",
-             "size": "small",
-             "separator": true
-           },
-           {
-             "type": "TextBlock",
-             "text": sentiment,
-             "size": "small",
-             "wrap": true
            }
          ],
          "actions": [
-           {
-             "type": "Action.OpenUrl",
-             "title": "View Report",
-             "url": "http://adaptivecards.io"
-           }
-         ]
+             {
+               "type": "Action.ShowCard",
+               "title": "Metadata",
+               "card": {
+                 "type": "AdaptiveCard",
+                 "body": [
+                   {
+                     "type": "TextBlock",
+                     "text": "Metadata",
+                     "weight": "bolder",
+                     "size": "medium",
+                     "separator": true
+                   },
+                   {
+                     "type": "FactSet",
+                     "facts": [
+                       {
+                         "title": "Owner:",
+                         "value": owner,
+                         "wrap": true
+                       },
+                       {
+                         "title": "Designee:",
+                         "value": designee,
+                         "wrap": true
+                       },
+                       {
+                         "title": "Approver:",
+                         "value": approver,
+                         "wrap": true
+                       },
+                       {
+                         "title": "Division:",
+                         "value": division,
+                         "wrap": true
+                       },
+                       {
+                         "title": "Classification:",
+                         "value": classification,
+                         "wrap": true
+                       }
+                     ]
+                   },
+                 ]
+               }
+             },
+             {
+               "type": "Action.ShowCard",
+               "title": "Additional Information",
+               "card": {
+                 "type": "AdaptiveCard",
+                 "body": [
+                   {
+                     "type": "TextBlock",
+                     "text": "Additional Information",
+                     "weight": "bolder",
+                     "size": "medium",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": "Report Language:",
+                     "weight": "bolder",
+                     "size": "small",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": language,
+                     "size": "small",
+                     "wrap": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": "Entities:",
+                     "weight": "bolder",
+                     "size": "small",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": entities + "\r",
+                     "size": "small",
+                     "wrap": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": "Key Phrases:",
+                     "weight": "bolder",
+                     "size": "small",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": keyPhrases + "\r",
+                     "size": "small",
+                     "wrap": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": "Sentiment Score:",
+                     "weight": "bolder",
+                     "size": "small",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": sentiment,
+                     "size": "small",
+                     "wrap": true
+                   }
+                 ]
+               }
+             },
+             {
+               "type": "Action.OpenUrl",
+               "title": "View Report",
+               "url": "http://adaptivecards.io"
+             }
+           ]
        });
      }
 
