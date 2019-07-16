@@ -105,7 +105,7 @@ class MainDialog extends ComponentDialog {
          }else if(turnContext.activity.text === 'How Do I Calculate the 2% Retirement Formula' ){
 
            await turnContext.sendActivity({ attachments: [this.dialogHelper.createGifCard()] });
-           await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
+           await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','...')] });
 
            var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Search Options', 'Search with LUIS']);
            await turnContext.sendActivity(reply);
@@ -168,7 +168,7 @@ class MainDialog extends ComponentDialog {
 
       stepContext.values.searchString = stepContext.result;
 
-      await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
+      await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','...')] });
 
       var reply2 = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Search Options', 'Search with LUIS']);
       await stepContext.context.sendActivity(reply2);
