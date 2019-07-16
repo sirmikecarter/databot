@@ -10,10 +10,15 @@ class DialogAndWelcomeBot extends DialogBot {
         super(conversationState, userState, dialog, logger);
 
         this.onMembersAdded(async (context, next) => {
-
+            const membersAdded = context.activity.membersAdded;
+            for (let cnt = 0; cnt < membersAdded.length; cnt++) {
+              console.log(membersAdded[cnt].id)
+              console.log('recipient: ' + context.activity.recipient.id)
+                if (membersAdded[cnt].id === context.activity.recipient.id) {
                     const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
                     await context.sendActivity({ attachments: [welcomeCard] });
-
+                }
+            }
 
             // By calling next() you ensure that the next BotHandler is run.
             await next();
