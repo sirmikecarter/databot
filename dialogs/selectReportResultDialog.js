@@ -203,7 +203,7 @@ class SelectReportResultDialog {
 
         await turnContext.sendActivity({ attachments: [this.dialogHelper.createReportCard(this.state.reportname, this.state.description, this.state.owner, this.state.designee, this.state.approver, this.state.division, this.state.classification, this.state.language, this.state.entities[0].entities, this.state.keyPhrases[0].keyphrases, this.state.sentiment)] });
 
-        await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','...')] });
+        await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
 
         var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Search Options', 'Search with LUIS']);
         await turnContext.sendActivity(reply);
