@@ -231,7 +231,7 @@ class DialogHelper {
        });
      }
 
-     createComboListCard(choiceList) {
+     createComboListCard(choiceList, selectorValue) {
 
      return CardFactory.adaptiveCard({
        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
@@ -252,7 +252,7 @@ class DialogHelper {
            "id": "submit",
            "title": "Submit",
            "data":{
-                 "action": "report_name_selector"
+                 "action": selectorValue
            }
          }
        ]

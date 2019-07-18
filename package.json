@@ -16,8 +16,10 @@
         "url": "https://github.com/Microsoft/BotBuilder-Samples.git"
     },
     "dependencies": {
+        "@azure/storage-blob": "^10.3.0",
         "@microsoft/recognizers-text-data-types-timex-expression": "^1.1.4",
         "axios": "^0.19.0",
+        "azure-search": "0.0.21",
         "botbuilder": "^4.4.0",
         "botbuilder-ai": "^4.4.0",
         "botbuilder-dialogs": "^4.4.0",

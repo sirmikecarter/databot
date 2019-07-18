@@ -47,6 +47,11 @@
 },
 {
 "type": "Action.Submit",
+"title": "Analyze Documents",
+"data": "Analyze Documents"
+},
+{
+"type": "Action.Submit",
 "title": "Search Options",
 "data": "Search Options"
 },

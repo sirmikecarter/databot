@@ -102,7 +102,7 @@ class SelectReportDialog extends CancelAndHelpDialog {
                console.log(error);
         });
 
-      await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createComboListCard(this.state.reportNameSearch)] });
+      await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createComboListCard(this.state.reportNameSearch, 'report_name_selector_value')] });
       return await stepContext.endDialog('End Dialog');
     }
 
