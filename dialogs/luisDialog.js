@@ -63,7 +63,7 @@ class LuisDialog {
             // and will then pass those values into the booking dialog
             bookingDetails = await LuisHelper.executeLuisQuery(this.logger, turnContext);
 
-            this.logger.log('LUIS extracted these report details:', bookingDetails);
+            //this.logger.log('LUIS extracted these report details:', bookingDetails);
 
             await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Below is what I understand: ','')] });
 

@@ -103,6 +103,12 @@ class SelectReportDialog extends CancelAndHelpDialog {
         });
 
       await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createComboListCard(this.state.reportNameSearch, 'report_name_selector_value')] });
+
+      await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
+
+      var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Analyze Documents', 'Search Options', 'Search with LUIS']);
+      await stepContext.context.sendActivity(reply);
+
       return await stepContext.endDialog('End Dialog');
     }
 

@@ -66,10 +66,8 @@ class AnalyzeDocumentsDialog extends CancelAndHelpDialog {
           response = await containerURL.listBlobFlatSegment(aborter);
           marker = response.marker;
           for(let blob of response.segment.blobItems) {
-              console.log(` - ${ blob.name }`);
-
+              //console.log(` - ${ blob.name }`);
               itemArray.push({'title': blob.name, 'value': blob.name})
-
           }
       } while (marker);
 
@@ -78,6 +76,12 @@ class AnalyzeDocumentsDialog extends CancelAndHelpDialog {
       if(this.state.documentNameSearch != null){
 
         await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createComboListCard(this.state.documentNameSearch, 'document_name_selector_value')] });
+
+        await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
+
+        var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Analyze Documents', 'Search Options', 'Search with LUIS']);
+        await stepContext.context.sendActivity(reply);
+
         return await stepContext.endDialog('End Dialog');
 
       }else{
@@ -85,6 +89,12 @@ class AnalyzeDocumentsDialog extends CancelAndHelpDialog {
         itemArray.push({'title': 'blob.name', 'value': 'blob.name'})
         this.state.documentNameSearch = itemArray
         await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createComboListCard(this.state.documentNameSearch, 'document_name_selector_value')] });
+
+        await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
+
+        var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Analyze Documents', 'Search Options', 'Search with LUIS']);
+        await stepContext.context.sendActivity(reply);
+
         return await stepContext.endDialog('End Dialog');
 
       }

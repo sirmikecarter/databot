@@ -244,7 +244,6 @@ class MainDialog extends ComponentDialog {
         }
       });
 
-
         // Prepare Promises to download each attachment and then execute each Promise.
         const promises = turnContext.activity.attachments.map(this.downloadAttachmentAndWrite);
         const successfulSaves = await Promise.all(promises);
@@ -254,10 +253,6 @@ class MainDialog extends ComponentDialog {
         // and what the name of the saved file is.
         async function replyForReceivedAttachments(localAttachmentData) {
             if (localAttachmentData) {
-                // Because the TurnContext was bound to this function, the bot can call
-                // `TurnContext.sendActivity` via `this.sendActivity`;
-                // await this.sendActivity(`Attachment "${ localAttachmentData.fileName }" ` +
-                //     `has been received and saved to "${ localAttachmentData.localPath }".`);
 
                 // run an indexer
                 azureSearchClient.resetIndexer(process.env.SearchServiceDocumentIndexer, function(err){
@@ -277,8 +272,6 @@ class MainDialog extends ComponentDialog {
 
             }
         }
-
-
 
         // Prepare Promises to reply to the user with information about saved attachments.
         // The current TurnContext is bound so `replyForReceivedAttachments` can also send replies.
@@ -300,10 +293,6 @@ class MainDialog extends ComponentDialog {
         const serviceURL = new ServiceURL('https://'+process.env.StorageAccountName+'.blob.core.windows.net', pipeline);
         const containerURL = ContainerURL.fromServiceURL(serviceURL, process.env.StorageAccountContainerName);
 
-        // Local file path for the bot to save the attachment.
-        //const localFileName = path.join('./bots/uploads', attachment.name);
-
-
         try {
             // arraybuffer is necessary for images
             const response = await axios.get(url, { responseType: 'arraybuffer' });
@@ -317,13 +306,7 @@ class MainDialog extends ComponentDialog {
             const blockBlobURL = BlockBlobURL.fromContainerURL(containerURL, attachment.name);
 
             await blockBlobURL.upload(aborter, response.data, response.data.length);
-            //console.log('Blob '+ attachment.name + ' is uploaded');
 
-            // fs.writeFile(localFileName, response.data, (fsError) => {
-            //     if (fsError) {
-            //         throw fsError;
-            //     }
-            // });
         } catch (error) {
             console.error(error);
             return undefined;
