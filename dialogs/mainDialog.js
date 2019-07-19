@@ -108,7 +108,6 @@ class MainDialog extends ComponentDialog {
            if (turnContext.activity.attachments && turnContext.activity.attachments.length > 0) {
                 // The user sent an attachment and the bot should handle the incoming attachment.
                 await this.handleIncomingAttachment(turnContext);
-                //await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Looks like you sent an attachment','I dont understand this quite yet')] });
 
                 await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
 
@@ -120,8 +119,6 @@ class MainDialog extends ComponentDialog {
          }
 
          if (turnContext.activity.value){
-           // console.log(turnContext.activity.value)
-           // console.log(turnContext.activity.value.value)
 
           if (turnContext.activity.value.action === 'report_name_selector_value'){
 
@@ -166,14 +163,15 @@ class MainDialog extends ComponentDialog {
              }
 
            }else if(turnContext.activity.text === 'menu' || turnContext.activity.text === 'help'|| turnContext.activity.text === 'cancel'){
+
              const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
              await turnContext.sendActivity({ attachments: [welcomeCard] });
+
            }else if(turnContext.activity.text === 'Search with LUIS'){
-             console.log('LUIS Search')
 
              await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...I understand complex search phrases','below are some phrases I understand and can find reports for:')] });
 
-             var reply2 = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Analyze Documents', 'Search Options', 'Search with LUIS']);
+             var reply2 = MessageFactory.suggestedActions(['luis: members account reports owed by John','luis: Sensitive reports', 'luis: reports delegated to Amber', 'luis: sensitive report owned by john and approved by john']);
              await turnContext.sendActivity(reply2);
 
            }else if(turnContext.activity.text.includes('LUIS Search') || turnContext.activity.text.includes('luis search') || turnContext.activity.text.includes('luis:')){
