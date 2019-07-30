@@ -47,11 +47,6 @@
 },
 {
 "type": "Action.Submit",
-"title": "Analyze Documents",
-"data": "Analyze Documents"
-},
-{
-"type": "Action.Submit",
 "title": "Search Options",
 "data": "Search Options"
 },
@@ -59,6 +54,11 @@
 "type": "Action.Submit",
 "title": "Search with LUIS (Language Understanding Intelligent Service)",
 "data": "Search with LUIS"
+},
+{
+"type": "Action.Submit",
+"title": "Analyze Documents",
+"data": "Analyze Documents"
 }
 ]
 }
