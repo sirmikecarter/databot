@@ -41,6 +41,134 @@ class DialogHelper {
        );
      }
 
+     createDocumentCard(title, language, keyPhrases, organizations, persons, locations, glossary1, glossary2) {
+
+     return CardFactory.adaptiveCard({
+         "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+         "type": "AdaptiveCard",
+         "version": "1.0",
+         "body": [
+           {
+             "type": "TextBlock",
+             "text": title,
+             "weight": "bolder",
+             "size": "medium"
+           }
+         ],
+         "actions": [
+             {
+               "type": "Action.ShowCard",
+               "title": "Additional Information",
+               "card": {
+                 "type": "AdaptiveCard",
+                 "body": [
+                   {
+                     "type": "TextBlock",
+                     "text": "Additional Information",
+                     "weight": "bolder",
+                     "size": "medium",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": "Document Language:",
+                     "weight": "bolder",
+                     "size": "small",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": language,
+                     "size": "small",
+                     "wrap": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": "Key Phrases:",
+                     "weight": "bolder",
+                     "size": "small",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": keyPhrases + "\r",
+                     "size": "small",
+                     "wrap": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": "Organizations:",
+                     "weight": "bolder",
+                     "size": "small",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": organizations,
+                     "size": "small",
+                     "wrap": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": "Persons:",
+                     "weight": "bolder",
+                     "size": "small",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": persons + "\r",
+                     "size": "small",
+                     "wrap": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": "Locations:",
+                     "weight": "bolder",
+                     "size": "small",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": locations + "\r",
+                     "size": "small",
+                     "wrap": true
+                   }
+                 ]
+               }
+             },
+             {
+               "type": "Action.ShowCard",
+               "title": "CalPERS Glossary",
+               "card": {
+                 "type": "AdaptiveCard",
+                 "body": [
+                   {
+                     "type": "TextBlock",
+                     "text": "CalPERS Glossary",
+                     "weight": "bolder",
+                     "size": "medium",
+                     "separator": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": glossary1 + "\r",
+                     "size": "small",
+                     "wrap": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": glossary2 + "\r",
+                     "size": "small",
+                     "wrap": true
+                   }
+                 ]
+               }
+             }
+           ]
+       });
+     }
+
      createReportCard(title, description, owner, designee, approver, division, classification, language, entities, keyPhrases, sentiment) {
 
      return CardFactory.adaptiveCard({
@@ -240,7 +368,7 @@ class DialogHelper {
        "body": [
          {
            "type": "Input.ChoiceSet",
-           "id": "report_name_selector_value",
+           "id": selectorValue,
            "style": "compact",
            "value": "0",
            "choices": choiceList

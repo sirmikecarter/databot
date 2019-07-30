@@ -50,30 +50,44 @@ class AnalyzeDocumentsDialog extends CancelAndHelpDialog {
      */
     async destinationStep(stepContext) {
 
-      const credentials = new SharedKeyCredential(process.env.StorageAccountName, process.env.StorageAccountKey);
-      const pipeline = StorageURL.newPipeline(credentials);
-      const serviceURL = new ServiceURL('https://'+process.env.StorageAccountName+'.blob.core.windows.net', pipeline);
-      const containerURL = ContainerURL.fromServiceURL(serviceURL, process.env.StorageAccountContainerName);
+      var self = this;
 
+      await axios.get(process.env.SearchService +'/indexes/'+ process.env.SearchServiceDocIndex + '/docs?',
+              { params: {
+                'api-version': '2019-05-06',
+                'search': '*'
+                },
+              headers: {
+                'api-key': process.env.SearchServiceKey,
+                'ContentType': 'application/json'
+        }
 
-      let response;
-      let marker;
+        }).then(response => {
 
-      this.state.documentNameSearch = []
-      var itemArray = this.state.documentNameSearch.slice();
+          if (response){
+            var itemArray = []
+            self.state.documentNameSearch = []
+            var itemCount = response.data.value.length
+            itemArray = self.state.documentNameSearch.slice();
 
-      do {
-          response = await containerURL.listBlobFlatSegment(aborter);
-          marker = response.marker;
-          for(let blob of response.segment.blobItems) {
-              //console.log(` - ${ blob.name }`);
-              itemArray.push({'title': blob.name, 'value': blob.name})
-          }
-      } while (marker);
+            for (var i = 0; i < itemCount; i++)
+            {
+                  const itemResult = response.data.value[i].metadata_storage_name
 
-      this.state.documentNameSearch = itemArray
+                  if (itemArray.indexOf(itemResult) === -1)
+                  {
+                    itemArray.push({'title': itemResult, 'value': itemResult})
+                  }
+            }
 
-      if(this.state.documentNameSearch != null){
+            //console.log(itemArray)
+            self.state.documentNameSearch = itemArray
+
+         }
+
+        }).catch((error)=>{
+               console.log(error);
+        });
 
         await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createComboListCard(this.state.documentNameSearch, 'document_name_selector_value')] });
 
@@ -84,20 +98,54 @@ class AnalyzeDocumentsDialog extends CancelAndHelpDialog {
 
         return await stepContext.endDialog('End Dialog');
 
-      }else{
-
-        itemArray.push({'title': 'blob.name', 'value': 'blob.name'})
-        this.state.documentNameSearch = itemArray
-        await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createComboListCard(this.state.documentNameSearch, 'document_name_selector_value')] });
-
-        await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
-
-        var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Analyze Documents', 'Search Options', 'Search with LUIS']);
-        await stepContext.context.sendActivity(reply);
-
-        return await stepContext.endDialog('End Dialog');
-
-      }
+      // const credentials = new SharedKeyCredential(process.env.StorageAccountName, process.env.StorageAccountKey);
+      // const pipeline = StorageURL.newPipeline(credentials);
+      // const serviceURL = new ServiceURL('https://'+process.env.StorageAccountName+'.blob.core.windows.net', pipeline);
+      // const containerURL = ContainerURL.fromServiceURL(serviceURL, process.env.StorageAccountContainerName);
+      //
+      //
+      // let response;
+      // let marker;
+      //
+      // this.state.documentNameSearch = []
+      // var itemArray = this.state.documentNameSearch.slice();
+      //
+      // do {
+      //     response = await containerURL.listBlobFlatSegment(aborter);
+      //     marker = response.marker;
+      //     for(let blob of response.segment.blobItems) {
+      //         //console.log(` - ${ blob.name }`);
+      //         itemArray.push({'title': blob.name, 'value': blob.name})
+      //     }
+      // } while (marker);
+      //
+      // this.state.documentNameSearch = itemArray
+      //
+      // if(this.state.documentNameSearch != null){
+      //
+      //   await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createComboListCard(this.state.documentNameSearch, 'document_name_selector_value')] });
+      //
+      //   await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
+      //
+      //   var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Analyze Documents', 'Search Options', 'Search with LUIS']);
+      //   await stepContext.context.sendActivity(reply);
+      //
+      //   return await stepContext.endDialog('End Dialog');
+      //
+      // }else{
+      //
+      //   itemArray.push({'title': 'blob.name', 'value': 'blob.name'})
+      //   this.state.documentNameSearch = itemArray
+      //   await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createComboListCard(this.state.documentNameSearch, 'document_name_selector_value')] });
+      //
+      //   await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
+      //
+      //   var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Analyze Documents', 'Search Options', 'Search with LUIS']);
+      //   await stepContext.context.sendActivity(reply);
+      //
+      //   return await stepContext.endDialog('End Dialog');
+      //
+      // }
 
     }
 

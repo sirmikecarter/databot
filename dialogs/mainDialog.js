@@ -9,6 +9,7 @@ const { SearchDialog } = require('./searchDialog');
 const { SelectReportDialog } = require('./selectReportDialog');
 const { SelectReportResultDialog } = require('./selectReportResultDialog');
 const { AnalyzeDocumentsDialog } = require('./analyzeDocumentsDialog');
+const { AnalyzeDocumentsResultDialog } = require('./analyzeDocumentsResultDialog');
 const { LuisHelper } = require('./luisHelper');
 const { DialogHelper } = require('./dialogHelper');
 const { LuisDialog } = require('./luisDialog');
@@ -17,6 +18,7 @@ const MAIN_WATERFALL_DIALOG = 'mainWaterfallDialog';
 const SEARCH_FILTER_DIALOG = 'searchFilterDialog';
 const SEARCH_DIALOG = 'searchDialog';
 const ANALYZE_DOCUMENTS_DIALOG = 'analyzeDocumentsDialog';
+const ANALYZE_DOCUMENTS_RESULT_DIALOG = 'analyzeDocumentsResultDialog';
 const CHOICE_PROMPT = 'CHOICE_PROMPT';
 
 const path = require('path');
@@ -71,6 +73,7 @@ class MainDialog extends ComponentDialog {
         this.selectReportDialog = new SelectReportDialog();
         this.selectReportResultDialog = new SelectReportResultDialog();
         this.analyzeDocumentsDialog = new AnalyzeDocumentsDialog();
+        this.analyzeDocumentsResultDialog = new AnalyzeDocumentsResultDialog();
 
         // Define the main dialog and its related components.
         // This is a sample "book a flight" dialog.
@@ -127,11 +130,7 @@ class MainDialog extends ComponentDialog {
 
           if (turnContext.activity.value.action === 'document_name_selector_value'){
 
-            await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...This is currently Under Construction','check back later')] });
-            await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
-
-            var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Analyze Documents', 'Search Options', 'Search with LUIS']);
-            await turnContext.sendActivity(reply);
+            await this.analyzeDocumentsResultDialog.onTurn(turnContext);
           }
 
 
