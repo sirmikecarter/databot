@@ -155,7 +155,7 @@ class MainDialog extends ComponentDialog {
              var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Search Options', 'Search with LUIS', 'Analyze Documents']);
              await turnContext.sendActivity(reply);
 
-           }else if(turnContext.activity.text === 'Search Options' ){
+           }else if(turnContext.activity.text === 'Report Search Options' ){
 
              if (results.status === DialogTurnStatus.empty) {
                  await dialogContext.beginDialog(this.id);

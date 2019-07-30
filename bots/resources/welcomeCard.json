@@ -47,8 +47,8 @@
 },
 {
 "type": "Action.Submit",
-"title": "Search Options",
-"data": "Search Options"
+"title": "Report Search Options",
+"data": "Report Search Options"
 },
 {
 "type": "Action.Submit",
