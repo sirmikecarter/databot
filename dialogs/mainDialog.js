@@ -170,7 +170,7 @@ class MainDialog extends ComponentDialog {
 
              await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...I understand complex search phrases','below are some phrases I understand and can find reports for:')] });
 
-             var reply2 = MessageFactory.suggestedActions(['luis: members account reports owed by John','luis: Sensitive reports', 'luis: reports delegated to Amber', 'luis: sensitive report owned by john and approved by john']);
+             var reply2 = MessageFactory.suggestedActions(['luis: members account reports owed by John','luis: Sensitive reports', 'luis: reports delegated to Amber', 'luis: sensitive report owned by john and approved by steve']);
              await turnContext.sendActivity(reply2);
 
            }else if(turnContext.activity.text.includes('LUIS Search') || turnContext.activity.text.includes('luis search') || turnContext.activity.text.includes('luis:')){
