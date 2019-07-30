@@ -41,7 +41,7 @@ class DialogHelper {
        );
      }
 
-     createDocumentCard(title, language, keyPhrases1, keyPhrases2, organizations, persons, locations, glossary1, glossary2) {
+     createDocumentCard(title, language, keyPhrases, organizations, persons, locations, glossary1, glossary2) {
 
      return CardFactory.adaptiveCard({
          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
@@ -56,32 +56,34 @@ class DialogHelper {
            }
          ],
          "actions": [
+           {
+             "type": "Action.ShowCard",
+             "title": "Language",
+             "card": {
+               "type": "AdaptiveCard",
+               "body": [
+                 {
+                   "type": "TextBlock",
+                   "text": "Document Language:",
+                   "weight": "bolder",
+                   "size": "small",
+                   "separator": true
+                 },
+                 {
+                   "type": "TextBlock",
+                   "text": language,
+                   "size": "small",
+                   "wrap": true
+                 },
+               ]
+             }
+           },
              {
                "type": "Action.ShowCard",
-               "title": "Additional Information",
+               "title": "Key Phrases",
                "card": {
                  "type": "AdaptiveCard",
                  "body": [
-                   {
-                     "type": "TextBlock",
-                     "text": "Additional Information",
-                     "weight": "bolder",
-                     "size": "medium",
-                     "separator": true
-                   },
-                   {
-                     "type": "TextBlock",
-                     "text": "Document Language:",
-                     "weight": "bolder",
-                     "size": "small",
-                     "separator": true
-                   },
-                   {
-                     "type": "TextBlock",
-                     "text": language,
-                     "size": "small",
-                     "wrap": true
-                   },
                    {
                      "type": "TextBlock",
                      "text": "Key Phrases:",
@@ -91,34 +93,46 @@ class DialogHelper {
                    },
                    {
                      "type": "TextBlock",
-                     "text": keyPhrases1 + "\r",
+                     "text": keyPhrases + "\r",
                      "size": "small",
                      "wrap": true
-                   },
+                   }
+                 ]
+               }
+             },
+             {
+               "type": "Action.ShowCard",
+               "title": "Organizations",
+               "card": {
+                 "type": "AdaptiveCard",
+                 "body": [
                    {
                      "type": "TextBlock",
-                     "text": keyPhrases2 + "\r",
-                     "size": "small",
-                     "wrap": true
-                   },
-                   {
-                     "type": "TextBlock",
-                     "text": "Organizations:",
+                     "text": "Organizations",
                      "weight": "bolder",
-                     "size": "small",
+                     "size": "medium",
                      "separator": true
                    },
                    {
                      "type": "TextBlock",
-                     "text": organizations,
+                     "text": organizations + "\r",
                      "size": "small",
                      "wrap": true
-                   },
+                   }
+                 ]
+               }
+             },
+             {
+               "type": "Action.ShowCard",
+               "title": "Persons",
+               "card": {
+                 "type": "AdaptiveCard",
+                 "body": [
                    {
                      "type": "TextBlock",
-                     "text": "Persons:",
+                     "text": "Persons",
                      "weight": "bolder",
-                     "size": "small",
+                     "size": "medium",
                      "separator": true
                    },
                    {
@@ -126,12 +140,21 @@ class DialogHelper {
                      "text": persons + "\r",
                      "size": "small",
                      "wrap": true
-                   },
+                   }
+                 ]
+               }
+             },
+             {
+               "type": "Action.ShowCard",
+               "title": "Locations",
+               "card": {
+                 "type": "AdaptiveCard",
+                 "body": [
                    {
                      "type": "TextBlock",
-                     "text": "Locations:",
+                     "text": "Locations",
                      "weight": "bolder",
-                     "size": "small",
+                     "size": "medium",
                      "separator": true
                    },
                    {

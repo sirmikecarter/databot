@@ -118,7 +118,7 @@ class AnalyzeDocumentsResultDialog {
                console.log(error);
         });
 
-        await turnContext.sendActivity({ attachments: [this.dialogHelper.createDocumentCard(self.state.reportname, self.state.reportLanguage, self.state.reportArrayKeyPhrases[0], self.state.reportArrayKeyPhrases[1], self.state.reportArrayOrganizations, self.state.reportArrayPersons, self.state.reportArrayLocations, self.state.reportArrayGlossary[0], self.state.reportArrayGlossary[1])] });
+        await turnContext.sendActivity({ attachments: [this.dialogHelper.createDocumentCard(self.state.reportname, self.state.reportLanguage, self.state.reportArrayKeyPhrases, self.state.reportArrayOrganizations, self.state.reportArrayPersons, self.state.reportArrayLocations, self.state.reportArrayGlossary[0], self.state.reportArrayGlossary[1])] });
 
         await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
 
