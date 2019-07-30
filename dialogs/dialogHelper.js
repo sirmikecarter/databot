@@ -41,7 +41,7 @@ class DialogHelper {
        );
      }
 
-     createDocumentCard(title, language, keyPhrases, organizations, persons, locations, glossary1, glossary2) {
+     createDocumentCard(title, language, keyPhrases1, keyPhrases2, organizations, persons, locations, glossary1, glossary2) {
 
      return CardFactory.adaptiveCard({
          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
@@ -91,7 +91,13 @@ class DialogHelper {
                    },
                    {
                      "type": "TextBlock",
-                     "text": keyPhrases + "\r",
+                     "text": keyPhrases1 + "\r",
+                     "size": "small",
+                     "wrap": true
+                   },
+                   {
+                     "type": "TextBlock",
+                     "text": keyPhrases2 + "\r",
                      "size": "small",
                      "wrap": true
                    },
