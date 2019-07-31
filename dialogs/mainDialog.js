@@ -114,7 +114,7 @@ class MainDialog extends ComponentDialog {
 
                 await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
 
-                var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Search Options', 'Search with LUIS', 'Analyze Documents']);
+                var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Report Search Options', 'Search with LUIS', 'Analyze Documents']);
                 await turnContext.sendActivity(reply);
 
             }
@@ -152,7 +152,7 @@ class MainDialog extends ComponentDialog {
              await turnContext.sendActivity({ attachments: [this.dialogHelper.createGifCard()] });
              await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
 
-             var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Search Options', 'Search with LUIS', 'Analyze Documents']);
+             var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Report Search Options', 'Search with LUIS', 'Analyze Documents']);
              await turnContext.sendActivity(reply);
 
            }else if(turnContext.activity.text === 'Report Search Options' ){
@@ -218,7 +218,7 @@ class MainDialog extends ComponentDialog {
 
       await stepContext.context.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
 
-      var reply2 = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Search Options', 'Search with LUIS', 'Analyze Documents']);
+      var reply2 = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Report Search Options', 'Search with LUIS', 'Analyze Documents']);
       await stepContext.context.sendActivity(reply2);
 
       return await stepContext.endDialog();
