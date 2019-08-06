@@ -74,6 +74,8 @@ class SearchFilterDialog extends CancelAndHelpDialog {
           if (response){
            // turnContext.sendActivity(`looking through the reports...`);
 
+
+
             var itemCount = response.data.value.length
 
             var itemArray = self.state.reportArray.slice();
@@ -130,9 +132,13 @@ class SearchFilterDialog extends CancelAndHelpDialog {
         for (var i = 0; i < itemArrayMetaData.length; i++)
         {
 
-          if (this.state.itemArrayMetaUnique.indexOf(itemArrayMetaData[i]) === -1)
-          {
-            this.state.itemArrayMetaUnique.push(itemArrayMetaData[i])
+          if(itemArrayMetaData[i]){
+
+            if (this.state.itemArrayMetaUnique.indexOf(itemArrayMetaData[i]) === -1)
+            {
+              this.state.itemArrayMetaUnique.push(itemArrayMetaData[i])
+            }
+
           }
 
         }
@@ -274,33 +280,44 @@ class SearchFilterDialog extends CancelAndHelpDialog {
 
 
          for (var i = 0; i < metaDataOwnerUnique.length; i++){
-           var answerExp = new RegExp(metaDataOwnerUnique[i], 'gi');
-           //console.log(metaDataOwner.toString().match(answerExp).length);
-           metaDataOwnerCount.push([metaDataOwner.toString().match(answerExp).length, metaDataOwnerUnique[i] ])
+           if(metaDataOwnerUnique[i])
+           {
+             var answerExp = new RegExp(metaDataOwnerUnique[i], 'gi');
+             //console.log(metaDataOwner.toString().match(answerExp).length);
+             metaDataOwnerCount.push([metaDataOwner.toString().match(answerExp).length, metaDataOwnerUnique[i] ])
+           }
          }
 
          for (var i = 0; i < metaDataDesigneeUnique.length; i++){
+           if(metaDataDesigneeUnique[i]){
            var answerExp = new RegExp(metaDataDesigneeUnique[i], 'gi');
            //console.log(metaDataOwner.toString().match(answerExp).length);
            metaDataDesigneeCount.push([metaDataDesignee.toString().match(answerExp).length, metaDataDesigneeUnique[i] ])
+           }
          }
 
          for (var i = 0; i < metaDataApproverUnique.length; i++){
-           var answerExp = new RegExp(metaDataApproverUnique[i], 'gi');
-           //console.log(metaDataOwner.toString().match(answerExp).length);
-           metaDataApproverCount.push([metaDataApprover.toString().match(answerExp).length, metaDataApproverUnique[i] ])
+           if(metaDataApproverUnique[i]){
+             var answerExp = new RegExp(metaDataApproverUnique[i], 'gi');
+             //console.log(metaDataOwner.toString().match(answerExp).length);
+             metaDataApproverCount.push([metaDataApprover.toString().match(answerExp).length, metaDataApproverUnique[i] ])
+           }
          }
 
          for (var i = 0; i < metaDataDivisionUnique.length; i++){
-           var answerExp = new RegExp(metaDataDivisionUnique[i], 'gi');
-           //console.log(metaDataOwner.toString().match(answerExp).length);
-           metaDataDivisionCount.push([metaDataDivision.toString().match(answerExp).length, metaDataDivisionUnique[i] ])
+           if(metaDataDivisionUnique[i]){
+             var answerExp = new RegExp(metaDataDivisionUnique[i], 'gi');
+             //console.log(metaDataOwner.toString().match(answerExp).length);
+             metaDataDivisionCount.push([metaDataDivision.toString().match(answerExp).length, metaDataDivisionUnique[i] ])
+           }
          }
 
          for (var i = 0; i < metaDataClassificationUnique.length; i++){
-           var answerExp = new RegExp(metaDataClassificationUnique[i], 'gi');
-           //console.log(metaDataOwner.toString().match(answerExp).length);
-           metaDataClassificationCount.push([metaDataClassification.toString().match(answerExp).length, metaDataClassificationUnique[i] ])
+           if(metaDataClassificationUnique[i]){
+             var answerExp = new RegExp(metaDataClassificationUnique[i], 'gi');
+             //console.log(metaDataOwner.toString().match(answerExp).length);
+             metaDataClassificationCount.push([metaDataClassification.toString().match(answerExp).length, metaDataClassificationUnique[i] ])
+           }
          }
 
 
