@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 const { QnAMaker } = require('botbuilder-ai');
 const { LuisHelper } = require('./luisHelper');
-const { LuisRecognizer } = require('botbuilder-ai');
+const { LuisApplication, LuisPredictionOptions, LuisRecognizer } = require('botbuilder-ai');
 const { DialogHelper } = require('./dialogHelper');
 const { AttachmentLayoutTypes, CardFactory, MessageFactory } = require('botbuilder-core');
 
@@ -24,13 +24,29 @@ class LuisDialog {
             host: process.env.QnAHostname
         });
 
-        this.luisRecognizer = new LuisRecognizer({
+        // this.luisRecognizer = new LuisRecognizer({
+        //     applicationId: process.env.LuisAppId,
+        //     azureRegion: process.env.LuisAPIHostName,
+        //     // CAUTION: Authoring key is used in this example as it is appropriate for prototyping.
+        //     // When implimenting for deployment/production, assign and use a subscription key instead of an authoring key.
+        //     endpointKey: process.env.LuisAPIKey
+        // });
+
+        const luisApplication = {
             applicationId: process.env.LuisAppId,
             azureRegion: process.env.LuisAPIHostName,
             // CAUTION: Authoring key is used in this example as it is appropriate for prototyping.
             // When implimenting for deployment/production, assign and use a subscription key instead of an authoring key.
             endpointKey: process.env.LuisAPIKey
-        });
+        };
+
+        const luisPredictionOptions = {
+            spellCheck: true,
+            bingSpellCheckSubscriptionKey: process.env.BingSpellCheck
+
+        };
+
+        this.luisRecognizer = new LuisRecognizer(luisApplication, luisPredictionOptions);
 
         this.logger = console
         this.dialogHelper = new DialogHelper();
@@ -43,8 +59,10 @@ class LuisDialog {
     async onTurn(turnContext) {
         // Call QnA Maker and get results.
         let bookingDetails = {};
+        var textResults
 
         const dispatchResults = await this.luisRecognizer.recognize(turnContext);
+
         const dispatchTopIntent = LuisRecognizer.topIntent(dispatchResults);
 
         //console.log(dispatchTopIntent)
@@ -92,10 +110,18 @@ class LuisDialog {
               await turnContext.sendActivity('Classification: ' + bookingDetails.classification)
             }
 
-            await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
+            if (dispatchResults.alteredText)
+            {
+              await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...I\'ve noticed a misspelling, click the box below for updated results','')] });
 
-            var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Report Search Options', 'Search with LUIS', 'Analyze Documents']);
-            await turnContext.sendActivity(reply);
+              var reply = MessageFactory.suggestedActions([dispatchResults.alteredText]);
+              await turnContext.sendActivity(reply);
+            }else{
+              await turnContext.sendActivity({ attachments: [this.dialogHelper.createBotCard('...Is there anything else I can help you with?','')] });
+
+              var reply = MessageFactory.suggestedActions(['How Do I Calculate the 2% Retirement Formula','Select a Report by Report Name', 'Report Search Options', 'Search with LUIS', 'Analyze Documents']);
+              await turnContext.sendActivity(reply);
+            }
 
       }
     }

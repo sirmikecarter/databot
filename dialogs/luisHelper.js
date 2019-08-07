@@ -22,7 +22,7 @@ class LuisHelper {
             const recognizerResult = await recognizer.recognize(context);
 
 
-            console.log(recognizerResult.entities['Report_Classification'])
+            //console.log(recognizerResult.entities['Report_Classification'])
 
             const intent = LuisRecognizer.topIntent(recognizerResult);
 
