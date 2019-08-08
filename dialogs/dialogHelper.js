@@ -220,13 +220,13 @@ class DialogHelper {
          "actions": [
              {
                "type": "Action.ShowCard",
-               "title": "Metadata",
+               "title": "Additional Information",
                "card": {
                  "type": "AdaptiveCard",
                  "body": [
                    {
                      "type": "TextBlock",
-                     "text": "Metadata",
+                     "text": "Additional Information",
                      "weight": "bolder",
                      "size": "medium",
                      "separator": true
@@ -266,13 +266,13 @@ class DialogHelper {
              },
              {
                "type": "Action.ShowCard",
-               "title": "Additional Information",
+               "title": "Text Analytics",
                "card": {
                  "type": "AdaptiveCard",
                  "body": [
                    {
                      "type": "TextBlock",
-                     "text": "Additional Information",
+                     "text": "Text Analytics",
                      "weight": "bolder",
                      "size": "medium",
                      "separator": true
